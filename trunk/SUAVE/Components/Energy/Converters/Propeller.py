@@ -362,7 +362,7 @@ class Propeller(Energy_Component):
         
             dpsi        = -Rsquiggly/dR_dpsi
             PSI         = PSI + dpsi
-            diff        = np.max(abs(PSIold-PSI))
+            diff        = np.nanmax(abs(PSIold-PSI))
             PSIold      = PSI
         
             # omega = 0, do not run BEMT convergence loop 
@@ -388,9 +388,13 @@ class Propeller(Energy_Component):
         
         epsilon                  = Cd/Cl
         epsilon[epsilon==np.inf] = 10. 
+        epsilon[np.isnan(epsilon)] = 10.
 
         blade_T_distribution     = rho*(Gamma*(Wt-epsilon*Wa))*deltar 
         blade_Q_distribution     = rho*(Gamma*(Wa+epsilon*Wt)*r)*deltar 
+        
+        blade_T_distribution[np.isnan(blade_T_distribution)] = 0.
+        blade_Q_distribution[np.isnan(blade_Q_distribution)] = 0.
         
         if use_2d_analysis:
             blade_T_distribution_2d = blade_T_distribution
