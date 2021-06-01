@@ -167,6 +167,8 @@ def propeller_single_point(energy_network,
     results.torque                      = Q[0][0]
     results.power                       = P[0][0]
     results.power_coefficient           = Cp[0][0]
+    results.thrust_coefficient          = outputs.thrust_coefficient
+    results.torque_coefficient          = outputs.torque_coefficient
     results.efficiency                  = etap[0][0]
     results.induced_axial_velocity      = va_ind_BEMT
     results.induced_tangential_velocity = vt_ind_BEMT

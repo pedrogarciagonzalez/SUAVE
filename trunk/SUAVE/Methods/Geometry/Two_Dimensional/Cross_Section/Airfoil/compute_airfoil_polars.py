@@ -20,7 +20,7 @@ from scipy.interpolate        import RectBivariateSpline
 import numpy as np
 
 ## @ingroup Methods-Geometry-Two_Dimensional-Cross_Section-Airfoil
-def compute_airfoil_polars(a_geo,a_polar,use_pre_stall_data=True):
+def compute_airfoil_polars(a_geo,a_polar,use_pre_stall_data=False):
     """This computes the lift and drag coefficients of an airfoil in stall regimes using pre-stall
     characterstics and AERODAS formation for post stall characteristics. This is useful for 
     obtaining a more accurate prediction of wing and blade loading. Pre stall characteristics 
@@ -196,3 +196,6 @@ def apply_pre_stall_data(AoA_sweep_deg, airfoil_aoa, airfoil_cl, airfoil_cd, CL,
     CD[data_ub:]  = np.maximum(CD[data_ub:],  CD[data_ub]*np.ones_like(CD[data_ub:])) 
     
     return CL, CD
+
+def parabola(x, a, b, c):
+    return a*x**2 + b*x + c
