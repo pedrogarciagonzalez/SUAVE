@@ -1,0 +1,29 @@
+
+
+#                     SAMPLE PROBLEM for Aero Engine Technology AE238
+
+
+!  Combustion example:
+!
+!     (a)  Combustion or assigned-enthalpy-and-pressure problem (hp).
+!     (b)  Fuels are Jet-A(L)' at 298.15 K. The oxidant isair at 800 K.
+!     (c)  Oxidant-to-fuel weight ratio is 15 (o/f =15).  Weight fractions are
+!          fractions of fuel relative to total fuel and fractions of oxidant
+!          relative to total oxidant.
+!     (d)  Mixture enthalpy is calculated from reactant values given in 
+!          thermo.lib. This is because data for these species are given in
+!          thermo.lib and the species names match exactly.
+!     (e)  Many species are omitted from the product data base ('omit' dataset).
+!          Note:  these species names must match those used in thermo.lib.
+!     (f)  Assigned pressures are 1, 10, and 50 bar (p(bar)= 1, 10, 50).
+!     (g)  Mixture properties are to be printed in SI units (siunits).
+!     (h)  Mole fractions > 1.e-10 are to be in e-format (trace=1.e-10).
+!
+reac   
+     oxid Air  wtfrac= 1   t(k)=2400
+     fuel Jet-A(L)   wtfrac= 1.0   t(k)= 298.15
+prob   case=Example-3   hp  p(bar)=30 phi=0.8
+output siunits  trace=1.e-10
+
+omit H2O(s)           
+end  End all input for example 
